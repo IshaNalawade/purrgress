@@ -50,6 +50,9 @@ const STORE_KEY = "purrgress-v1";
 
 let state = load();
 let current = null;
+let rest = { remaining: 0, running: false };
+let restTimer = null;
+let clockTimer = null;
 
 function load() {
   try {
@@ -61,6 +64,12 @@ function load() {
 
 function save() {
   localStorage.setItem(STORE_KEY, JSON.stringify(state));
+}
+
+function fmtTime(totalSec) {
+  const m = Math.floor(totalSec / 60);
+  const s = totalSec % 60;
+  return m + ":" + String(s).padStart(2, "0");
 }
 
 function mondayOf(date) {
@@ -144,8 +153,17 @@ function renderPlan() {
     </div>`).join("");
 }
 
+function clearTimers() {
+  if (restTimer) clearInterval(restTimer);
+  if (clockTimer) clearInterval(clockTimer);
+  restTimer = null;
+  clockTimer = null;
+  rest = { remaining: 0, running: false };
+}
+
 function startSession(sessionId) {
   const session = PLAN.find((s) => s.id === sessionId);
+  clearTimers();
   current = {
     sessionId,
     startedAt: Date.now(),
@@ -160,8 +178,52 @@ function startSession(sessionId) {
       };
     }),
   };
+  clockTimer = setInterval(() => {
+    const clock = document.getElementById("session-clock");
+    if (clock && current) clock.textContent = fmtTime(Math.round((Date.now() - current.startedAt) / 1000));
+  }, 1000);
   renderSession();
   showView("session");
+}
+
+function restControlsHtml() {
+  if (rest.running) {
+    return `<span class="time" id="rest-time">${fmtTime(rest.remaining)}</span>
+      <button style="background:#fff;color:#2b2118;padding:8px 14px;border-radius:10px;font-weight:700;" onclick="skipRest()">Skip</button>`;
+  }
+  return `<span style="font-size:13px;">Rest timer</span>
+    <span>
+      <button style="background:#fff;color:#2b2118;padding:8px 12px;border-radius:10px;font-weight:700;" onclick="startRest(state.restSec)">${state.restSec}s</button>
+      <button style="background:transparent;color:#fff;padding:8px 6px;font-weight:700;" onclick="startRest(30)">30</button>
+      <button style="background:transparent;color:#fff;padding:8px 6px;font-weight:700;" onclick="startRest(90)">90</button>
+    </span>`;
+}
+
+function startRest(seconds) {
+  if (restTimer) clearInterval(restTimer);
+  rest = { remaining: seconds, running: true };
+  renderSession();
+  restTimer = setInterval(() => {
+    rest.remaining -= 1;
+    const label = document.getElementById("rest-time");
+    if (label) label.textContent = fmtTime(Math.max(0, rest.remaining));
+    if (rest.remaining <= 0) {
+      clearInterval(restTimer);
+      restTimer = null;
+      rest.running = false;
+      if (navigator.vibrate) navigator.vibrate(200);
+      const bar = document.getElementById("rest-controls");
+      if (bar) bar.innerHTML = `<span style="font-size:14px;font-weight:700;">Rest over, go!</span>
+        <button style="background:#fff;color:#2b2118;padding:8px 14px;border-radius:10px;font-weight:700;" onclick="renderSession()">Okay</button>`;
+    }
+  }, 1000);
+}
+
+function skipRest() {
+  if (restTimer) clearInterval(restTimer);
+  restTimer = null;
+  rest = { remaining: 0, running: false };
+  renderSession();
 }
 
 function renderSession() {
@@ -169,6 +231,10 @@ function renderSession() {
   const el = document.getElementById("view-session");
   el.innerHTML = `
     <h2>${session.emoji} ${session.name}</h2>
+    <div class="timerbar">
+      <div>⏱ <span class="time" id="session-clock">${fmtTime(Math.round((Date.now() - current.startedAt) / 1000))}</span></div>
+      <div id="rest-controls" style="display:flex;gap:8px;align-items:center;">${restControlsHtml()}</div>
+    </div>
     <p class="small">${session.note}</p>
     ${current.exercises.map((e, ei) => `
       <div class="card">
@@ -229,11 +295,13 @@ function finishSession() {
   });
   save();
   current = null;
+  clearTimers();
   showView("today");
 }
 
 function cancelSession() {
   current = null;
+  clearTimers();
   showView("today");
 }
 
