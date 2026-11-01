@@ -5,11 +5,7 @@ no account, no server. Your data lives in your phone browser.
 
 ## What it does
 
-- A weekly plan with four sessions: Legs, Arms and Back, Full Body, and
-  Abs at home with Chloe Ting follow along videos.
-- Every gym exercise links to a form video, mostly quick YouTube Shorts,
-  so you can check posture mid workout. The abs day links to the
-  Chloe Ting videos themselves.
+- A weekly plan with three sessions: Legs, Arms and Back, Full Body.
 - One tap workout logging with big steppers for weight and reps.
 - Smart weight suggestions. Finish all your sets at target reps and the
   app nudges the weight up next time. Struggle and it holds steady.
