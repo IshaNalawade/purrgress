@@ -49,6 +49,7 @@ const PLAN = [
 const STORE_KEY = "purrgress-v1";
 
 let state = load();
+if (!state.lastPerf) state.lastPerf = {};
 let current = null;
 let rest = { remaining: 0, running: false };
 let restTimer = null;
@@ -59,7 +60,7 @@ function load() {
     const raw = localStorage.getItem(STORE_KEY);
     if (raw) return JSON.parse(raw);
   } catch (e) { /* fresh start */ }
-  return { bodyWeight: [], history: [], lastWeights: {}, restSec: 60 };
+  return { bodyWeight: [], history: [], lastWeights: {}, lastPerf: {}, restSec: 60 };
 }
 
 function save() {
@@ -87,6 +88,31 @@ function doneThisWeek() {
     if (new Date(h.date) >= start) done.add(h.sessionId);
   }
   return done;
+}
+
+// How much did you actually lift? Done sets only, weight x reps.
+function sessionVolume(session) {
+  let total = 0;
+  for (const e of session.exercises) {
+    if (e.kind !== "strength") continue;
+    for (const s of e.sets) {
+      if (s.done) total += s.weight * s.reps;
+    }
+  }
+  return total;
+}
+
+// Suggestion rule: hit every set at target reps last time, and the app
+// nudges the weight up. Machines go up 5 lbs, dumbbells in each hand
+// go up 2.5 lbs. Anything else holds steady at your last weight.
+function suggestedWeight(exercise) {
+  const base = state.lastWeights[exercise.id] ?? exercise.weight;
+  const perf = state.lastPerf[exercise.id];
+  if (perf && perf.allDone) {
+    const bump = exercise.unit.includes("each hand") ? 2.5 : 5;
+    return { weight: base + bump, raised: true, from: base };
+  }
+  return { weight: base, raised: false, from: base };
 }
 
 function showView(name) {
@@ -171,10 +197,11 @@ function startSession(sessionId) {
       if (e.kind === "cardio") {
         return { ...e, sets: [{ minutes: e.minutes, done: false }] };
       }
-      const weight = state.lastWeights[e.id] ?? e.weight;
+      const suggestion = suggestedWeight(e);
       return {
         ...e,
-        sets: Array.from({ length: e.sets }, () => ({ weight, reps: e.reps, done: false })),
+        suggested: suggestion,
+        sets: Array.from({ length: e.sets }, () => ({ weight: suggestion.weight, reps: e.reps, done: false })),
       };
     }),
   };
@@ -240,6 +267,7 @@ function renderSession() {
       <div class="card">
         <h3>${e.name}</h3>
         <p class="small">${e.note}</p>
+        ${e.suggested && e.suggested.raised ? `<span class="badge good">Suggested ${e.suggested.weight} ${e.unit}, up from ${e.suggested.from}. You hit every set last time.</span>` : ""}
         ${e.sets.map((set, si) => `
           <div class="setrow ${set.done ? "done" : ""}">
             <div><strong>Set ${si + 1}</strong></div>
@@ -285,6 +313,9 @@ function finishSession() {
   for (const e of current.exercises) {
     if (e.kind === "strength" && e.sets.length) {
       state.lastWeights[e.id] = e.sets[e.sets.length - 1].weight;
+      state.lastPerf[e.id] = {
+        allDone: e.sets.every((s) => s.done && s.reps >= e.reps),
+      };
     }
   }
   state.history.unshift({
@@ -314,10 +345,11 @@ function renderHistory() {
   el.innerHTML = `<h2>History</h2>` + state.history.map((h) => {
     const session = PLAN.find((s) => s.id === h.sessionId);
     const mins = Math.round(h.durationSec / 60);
+    const volume = sessionVolume(h);
     return `<div class="card">
       <span class="badge">${new Date(h.date).toLocaleDateString()}</span>
       <h3>${session ? session.emoji + " " + session.name : h.sessionId}</h3>
-      <p class="small">${mins} minutes, ${h.exercises.length} exercises.</p>
+      <p class="small">${mins} minutes, ${h.exercises.length} exercises, ${volume.toLocaleString()} lbs lifted.</p>
       <p class="small">${h.exercises.map((e) => e.name).join(", ")}.</p>
     </div>`;
   }).join("");
@@ -329,6 +361,7 @@ function renderMe() {
   const trend = latest && first && state.bodyWeight.length > 1
     ? `Change since you started: ${(latest.weight - first.weight).toFixed(1)} lbs.`
     : "";
+  const totalVolume = state.history.reduce((sum, h) => sum + sessionVolume(h), 0);
   const el = document.getElementById("view-me");
   el.innerHTML = `
     <h2>Me</h2>
@@ -343,7 +376,7 @@ function renderMe() {
     </div>
     <div class="card">
       <h3>Totals</h3>
-      <p class="small">${state.history.length} workouts logged. ${doneThisWeek().size} sessions this week.</p>
+      <p class="small">${state.history.length} workouts logged. ${doneThisWeek().size} sessions this week. ${totalVolume.toLocaleString()} lbs lifted in total.</p>
       <label>Default rest between sets (seconds)</label>
       <select id="rest-select" onchange="setRest(this.value)">
         <option value="30" ${state.restSec === 30 ? "selected" : ""}>30</option>
