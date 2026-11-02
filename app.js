@@ -283,9 +283,13 @@ function setRowsHtml(e, ei) {
     </div>`;
   }
   return e.sets.map((set, si) => `
-    <div class="setrow ${set.done ? "done" : ""}">
-      <div><strong>Set ${si + 1}</strong></div>
-      ${e.kind === "cardio" ? `
+    <div class="setrow setrow-multi ${set.done ? "done" : ""}">
+      <div class="setrow-top">
+        <div><strong>Set ${si + 1}</strong></div>
+        <button class="check ${set.done ? "on" : ""}" onclick="toggleSet(${ei}, ${si})">${set.done ? "✓" : ""}</button>
+      </div>
+      <div class="setrow-steppers">
+        ${e.kind === "cardio" ? `
         <div class="stepper">
           <button onclick="bump(${ei}, ${si}, 'minutes', -1)">−</button>
           <span>${set.minutes} min</span>
@@ -301,7 +305,7 @@ function setRowsHtml(e, ei) {
           <span>${set.reps} reps</span>
           <button onclick="bump(${ei}, ${si}, 'reps', 1)">+</button>
         </div>`}
-      <button class="check ${set.done ? "on" : ""}" onclick="toggleSet(${ei}, ${si})">${set.done ? "✓" : ""}</button>
+      </div>
     </div>`).join("");
 }
 
