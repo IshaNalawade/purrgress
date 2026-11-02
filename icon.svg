@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
-  <rect width="128" height="128" rx="28" fill="#fff8f0"/>
-  <path d="M28 52 L24 22 L50 34 Z" fill="#e86a4a"/>
-  <path d="M100 52 L104 22 L78 34 Z" fill="#e86a4a"/>
-  <circle cx="64" cy="76" r="40" fill="#f2b441"/>
-  <circle cx="50" cy="70" r="5" fill="#2b2118"/>
-  <circle cx="78" cy="70" r="5" fill="#2b2118"/>
-  <path d="M58 84 Q64 90 70 84" stroke="#2b2118" stroke-width="3" fill="none" stroke-linecap="round"/>
-  <path d="M28 76 H14 M28 86 H16 M100 76 H114 M100 86 H112" stroke="#2b2118" stroke-width="3" stroke-linecap="round"/>
+  <rect width="128" height="128" rx="28" fill="#fdf7f9"/>
+  <path d="M28 52 L24 22 L50 34 Z" fill="#e07a9a"/>
+  <path d="M100 52 L104 22 L78 34 Z" fill="#e07a9a"/>
+  <circle cx="64" cy="76" r="40" fill="#f2cf8f"/>
+  <circle cx="50" cy="70" r="5" fill="#4a3f4d"/>
+  <circle cx="78" cy="70" r="5" fill="#4a3f4d"/>
+  <path d="M58 84 Q64 90 70 84" stroke="#4a3f4d" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M28 76 H14 M28 86 H16 M100 76 H114 M100 86 H112" stroke="#4a3f4d" stroke-width="3" stroke-linecap="round"/>
 </svg>

@@ -1,14 +1,14 @@
 :root {
-  --bg: #fff8f0;
+  --bg: #fdf7f9;
   --card: #ffffff;
-  --ink: #2b2118;
-  --muted: #8a7a6d;
-  --line: #f0e4d8;
-  --accent: #e86a4a;
-  --accent-soft: #fdeee8;
-  --honey: #f2b441;
-  --good: #4caf7d;
-  --good-soft: #e6f5ec;
+  --ink: #4a3f4d;
+  --muted: #a08fa0;
+  --line: #f3e6ec;
+  --accent: #e07a9a;
+  --accent-soft: #fdeef2;
+  --honey: #f2cf8f;
+  --good: #8fd6b0;
+  --good-soft: #e8f7ef;
 }
 
 * { box-sizing: border-box; }
