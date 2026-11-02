@@ -8,10 +8,10 @@ const PLAN = [
     emoji: "🦵",
     note: "Cool down: Precor stretching machine, hamstrings and hips.",
     exercises: [
-      { id: "leg-press", name: "Leg Press", note: "Seat 9", kind: "strength", sets: 3, reps: 12, weight: 40, unit: "lbs" },
-      { id: "leg-ext", name: "Leg Extension", note: "Seat 8, outer circle 1", kind: "strength", sets: 3, reps: 12, weight: 30, unit: "lbs" },
-      { id: "leg-curl", name: "Leg Curl", note: "Inner circle 1", kind: "strength", sets: 3, reps: 12, weight: 20, unit: "lbs" },
-      { id: "db-squat", name: "Dumbbell Squats", note: "10 lbs in each hand", kind: "strength", sets: 3, reps: 12, weight: 10, unit: "lbs each hand" },
+      { id: "leg-press", name: "Leg Press", note: "Seat 9", kind: "strength", sets: 3, reps: 12, weight: 40, unit: "lbs", video: "https://www.youtube.com/shorts/6ogVvPYxeOE" },
+      { id: "leg-ext", name: "Leg Extension", note: "Seat 8, outer circle 1", kind: "strength", sets: 3, reps: 12, weight: 30, unit: "lbs", video: "https://www.youtube.com/embed/YyvSfVjQeL0" },
+      { id: "leg-curl", name: "Leg Curl", note: "Inner circle 1", kind: "strength", sets: 3, reps: 12, weight: 20, unit: "lbs", video: "https://www.youtube.com/embed/vl5nUdE9mWM?showinfo=0&rel=0" },
+      { id: "db-squat", name: "Dumbbell Squats", note: "10 lbs in each hand", kind: "strength", sets: 3, reps: 12, weight: 10, unit: "lbs each hand", video: "https://www.youtube.com/watch?v=CDKqYmNpkC0" },
       { id: "stairs", name: "Stairs", note: "Finisher", kind: "cardio", minutes: 10, unit: "min" },
     ],
   },
@@ -21,12 +21,12 @@ const PLAN = [
     emoji: "💪",
     note: "End with 15 minutes on the treadmill.",
     exercises: [
-      { id: "lat-pulldown", name: "Lat Pulldown", note: "Start 25 to 40 lbs", kind: "strength", sets: 3, reps: 12, weight: 30, unit: "lbs" },
-      { id: "seated-row", name: "Seated Row", note: "Start 25 to 40 lbs", kind: "strength", sets: 3, reps: 12, weight: 30, unit: "lbs" },
-      { id: "db-curl", name: "Dumbbell Bicep Curls", note: "10 lbs in each hand", kind: "strength", sets: 3, reps: 12, weight: 10, unit: "lbs each hand" },
-      { id: "pushdown", name: "Cable Tricep Pushdowns", note: "Starting point, adjust freely", kind: "strength", sets: 3, reps: 12, weight: 20, unit: "lbs" },
-      { id: "hammer-curl", name: "Hammer Curls", note: "10 lbs in each hand", kind: "strength", sets: 3, reps: 12, weight: 10, unit: "lbs each hand" },
-      { id: "oh-tri", name: "Overhead Dumbbell Tricep Extension", note: "One 10 lbs dumbbell", kind: "strength", sets: 3, reps: 12, weight: 10, unit: "lbs" },
+      { id: "lat-pulldown", name: "Lat Pulldown", note: "Start 25 to 40 lbs", kind: "strength", sets: 3, reps: 12, weight: 30, unit: "lbs", video: "https://www.youtube.com/shorts/FgU5DSPrBjg" },
+      { id: "seated-row", name: "Seated Row", note: "Start 25 to 40 lbs", kind: "strength", sets: 3, reps: 12, weight: 30, unit: "lbs", video: "https://www.youtube.com/embed/EbfrqaMmreM?showinfo=0&rel=0" },
+      { id: "db-curl", name: "Dumbbell Bicep Curls", note: "10 lbs in each hand", kind: "strength", sets: 3, reps: 12, weight: 10, unit: "lbs each hand", video: "https://www.youtube-nocookie.com/embed/lV6gkUaVaQc" },
+      { id: "pushdown", name: "Cable Tricep Pushdowns", note: "Starting point, adjust freely", kind: "strength", sets: 3, reps: 12, weight: 20, unit: "lbs", video: "https://www.youtube.com/shorts/axDfrzuSB3Q" },
+      { id: "hammer-curl", name: "Hammer Curls", note: "10 lbs in each hand", kind: "strength", sets: 3, reps: 12, weight: 10, unit: "lbs each hand", video: "https://www.youtube-nocookie.com/embed/oVXsgIfRFuw" },
+      { id: "oh-tri", name: "Overhead Dumbbell Tricep Extension", note: "One 10 lbs dumbbell", kind: "strength", sets: 3, reps: 12, weight: 10, unit: "lbs", video: "https://www.youtube.com/embed/KvrP8c6eVBc?feature=oembed" },
       { id: "treadmill", name: "Treadmill", note: "Easy finish", kind: "cardio", minutes: 15, unit: "min" },
     ],
   },
@@ -36,12 +36,22 @@ const PLAN = [
     emoji: "🐱",
     note: "A little bit of everything, for days you want the full mix.",
     exercises: [
-      { id: "leg-press", name: "Leg Press", note: "Seat 9", kind: "strength", sets: 3, reps: 12, weight: 40, unit: "lbs" },
-      { id: "seated-row", name: "Seated Row", note: "Start 25 to 40 lbs", kind: "strength", sets: 3, reps: 12, weight: 30, unit: "lbs" },
-      { id: "db-squat", name: "Dumbbell Squats", note: "10 lbs in each hand", kind: "strength", sets: 3, reps: 12, weight: 10, unit: "lbs each hand" },
-      { id: "lat-pulldown", name: "Lat Pulldown", note: "Start 25 to 40 lbs", kind: "strength", sets: 3, reps: 12, weight: 30, unit: "lbs" },
-      { id: "db-curl", name: "Dumbbell Bicep Curls", note: "10 lbs in each hand", kind: "strength", sets: 3, reps: 12, weight: 10, unit: "lbs each hand" },
+      { id: "leg-press", name: "Leg Press", note: "Seat 9", kind: "strength", sets: 3, reps: 12, weight: 40, unit: "lbs", video: "https://www.youtube.com/shorts/6ogVvPYxeOE" },
+      { id: "seated-row", name: "Seated Row", note: "Start 25 to 40 lbs", kind: "strength", sets: 3, reps: 12, weight: 30, unit: "lbs", video: "https://www.youtube.com/embed/EbfrqaMmreM?showinfo=0&rel=0" },
+      { id: "db-squat", name: "Dumbbell Squats", note: "10 lbs in each hand", kind: "strength", sets: 3, reps: 12, weight: 10, unit: "lbs each hand", video: "https://www.youtube.com/watch?v=CDKqYmNpkC0" },
+      { id: "lat-pulldown", name: "Lat Pulldown", note: "Start 25 to 40 lbs", kind: "strength", sets: 3, reps: 12, weight: 30, unit: "lbs", video: "https://www.youtube.com/shorts/FgU5DSPrBjg" },
+      { id: "db-curl", name: "Dumbbell Bicep Curls", note: "10 lbs in each hand", kind: "strength", sets: 3, reps: 12, weight: 10, unit: "lbs each hand", video: "https://www.youtube-nocookie.com/embed/lV6gkUaVaQc" },
       { id: "elliptical", name: "Elliptical", note: "Easy finish", kind: "cardio", minutes: 10, unit: "min" },
+    ],
+  },
+  {
+    id: "abs",
+    name: "Abs (Home)",
+    emoji: "🏠",
+    note: "At home, no gym needed. Follow along with Chloe Ting.",
+    exercises: [
+      { id: "chloe-abs-2weeks", name: "Get Abs in 2 Weeks", note: "Chloe Ting, 10 min follow along, 21 moves", kind: "video", minutes: 10, video: "https://www.youtube.com/embed/2pLT-olgUJs" },
+      { id: "chloe-abs-6pack", name: "Chloe Ting 6 Pack Abs", note: "With weights, extra if you want more", kind: "video", video: "https://youtu.be/SX6Vhj9wZh8" },
     ],
   },
 ];
@@ -163,18 +173,25 @@ function renderToday() {
     </div>`;
 }
 
+function exerciseSummary(e) {
+  if (e.kind === "video") return "Follow along video" + (e.minutes ? ", " + e.minutes + " min" : "");
+  if (e.kind === "cardio") return e.minutes + " min";
+  return e.sets + " x " + e.reps + ", " + (state.lastWeights[e.id] ?? e.weight) + " " + e.unit;
+}
+
 function renderPlan() {
   const el = document.getElementById("view-plan");
-  el.innerHTML = `<h2>Weekly plan</h2>` + PLAN.map((s) => `
+  el.innerHTML = `<h2>Weekly plan</h2>` + PLAN.map((s, idx) => `
     <div class="card">
-      <span class="badge">${s.id === "legs" ? "Day 1" : s.id === "arms" ? "Day 2" : "Day 3"}</span>
+      <span class="badge">Day ${idx + 1}</span>
       <h3>${s.emoji} ${s.name}</h3>
       <p class="small">${s.note}</p>
       ${s.exercises.map((e) => `
         <div class="setrow">
           <div><strong>${e.name}</strong><div class="small">${e.note}</div></div>
-          <div class="small">${e.kind === "cardio" ? e.minutes + " min" : e.sets + " x " + e.reps + ", " + (state.lastWeights[e.id] ?? e.weight) + " " + e.unit}</div>
-        </div>`).join("")}
+          <div class="small">${exerciseSummary(e)}</div>
+        </div>
+        ${e.video ? `<a class="vlink" href="${e.video}" target="_blank" rel="noopener">▶ Watch ${e.kind === "video" ? "workout" : "form"} video</a>` : ""}`).join("")}
       <button class="btn" onclick="startSession('${s.id}')">Start ${s.name}</button>
     </div>`).join("");
 }
@@ -196,6 +213,9 @@ function startSession(sessionId) {
     exercises: session.exercises.map((e) => {
       if (e.kind === "cardio") {
         return { ...e, sets: [{ minutes: e.minutes, done: false }] };
+      }
+      if (e.kind === "video") {
+        return { ...e, sets: [{ done: false }] };
       }
       const suggestion = suggestedWeight(e);
       return {
@@ -253,6 +273,38 @@ function skipRest() {
   renderSession();
 }
 
+function setRowsHtml(e, ei) {
+  if (e.kind === "video") {
+    const set = e.sets[0];
+    return `<div class="setrow ${set.done ? "done" : ""}">
+      <div><strong>Follow along</strong>${e.minutes ? `<div class="small">${e.minutes} min</div>` : ""}</div>
+      <a class="vlink" href="${e.video}" target="_blank" rel="noopener">▶ Watch workout</a>
+      <button class="check ${set.done ? "on" : ""}" onclick="toggleSet(${ei}, 0)">${set.done ? "✓" : ""}</button>
+    </div>`;
+  }
+  return e.sets.map((set, si) => `
+    <div class="setrow ${set.done ? "done" : ""}">
+      <div><strong>Set ${si + 1}</strong></div>
+      ${e.kind === "cardio" ? `
+        <div class="stepper">
+          <button onclick="bump(${ei}, ${si}, 'minutes', -1)">−</button>
+          <span>${set.minutes} min</span>
+          <button onclick="bump(${ei}, ${si}, 'minutes', 1)">+</button>
+        </div>` : `
+        <div class="stepper">
+          <button onclick="bump(${ei}, ${si}, 'weight', -5)">−</button>
+          <span>${set.weight} ${e.unit}</span>
+          <button onclick="bump(${ei}, ${si}, 'weight', 5)">+</button>
+        </div>
+        <div class="stepper">
+          <button onclick="bump(${ei}, ${si}, 'reps', -1)">−</button>
+          <span>${set.reps} reps</span>
+          <button onclick="bump(${ei}, ${si}, 'reps', 1)">+</button>
+        </div>`}
+      <button class="check ${set.done ? "on" : ""}" onclick="toggleSet(${ei}, ${si})">${set.done ? "✓" : ""}</button>
+    </div>`).join("");
+}
+
 function renderSession() {
   const session = PLAN.find((s) => s.id === current.sessionId);
   const el = document.getElementById("view-session");
@@ -267,28 +319,9 @@ function renderSession() {
       <div class="card">
         <h3>${e.name}</h3>
         <p class="small">${e.note}</p>
+        ${e.kind !== "video" && e.video ? `<a class="vlink" href="${e.video}" target="_blank" rel="noopener">▶ Watch form video</a>` : ""}
         ${e.suggested && e.suggested.raised ? `<span class="badge good">Suggested ${e.suggested.weight} ${e.unit}, up from ${e.suggested.from}. You hit every set last time.</span>` : ""}
-        ${e.sets.map((set, si) => `
-          <div class="setrow ${set.done ? "done" : ""}">
-            <div><strong>Set ${si + 1}</strong></div>
-            ${e.kind === "cardio" ? `
-              <div class="stepper">
-                <button onclick="bump(${ei}, ${si}, 'minutes', -1)">−</button>
-                <span>${set.minutes} min</span>
-                <button onclick="bump(${ei}, ${si}, 'minutes', 1)">+</button>
-              </div>` : `
-              <div class="stepper">
-                <button onclick="bump(${ei}, ${si}, 'weight', -5)">−</button>
-                <span>${set.weight} ${e.unit}</span>
-                <button onclick="bump(${ei}, ${si}, 'weight', 5)">+</button>
-              </div>
-              <div class="stepper">
-                <button onclick="bump(${ei}, ${si}, 'reps', -1)">−</button>
-                <span>${set.reps} reps</span>
-                <button onclick="bump(${ei}, ${si}, 'reps', 1)">+</button>
-              </div>`}
-            <button class="check ${set.done ? "on" : ""}" onclick="toggleSet(${ei}, ${si})">${set.done ? "✓" : ""}</button>
-          </div>`).join("")}
+        ${setRowsHtml(e, ei)}
       </div>`).join("")}
     <button class="btn" onclick="finishSession()">Finish workout</button>
     <button class="btn ghost" onclick="cancelSession()">Cancel, do not save</button>`;
@@ -349,7 +382,7 @@ function renderHistory() {
     return `<div class="card">
       <span class="badge">${new Date(h.date).toLocaleDateString()}</span>
       <h3>${session ? session.emoji + " " + session.name : h.sessionId}</h3>
-      <p class="small">${mins} minutes, ${h.exercises.length} exercises, ${volume.toLocaleString()} lbs lifted.</p>
+      <p class="small">${mins} minutes, ${h.exercises.length} exercises${volume ? ", " + volume.toLocaleString() + " lbs lifted" : ""}.</p>
       <p class="small">${h.exercises.map((e) => e.name).join(", ")}.</p>
     </div>`;
   }).join("");
