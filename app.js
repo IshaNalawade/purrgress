@@ -23,6 +23,7 @@ const PLAN = [
     exercises: [
       { id: "lat-pulldown", name: "Lat Pulldown", note: "Start 25 to 40 lbs", kind: "strength", sets: 3, reps: 12, weight: 30, unit: "lbs", video: "https://www.youtube.com/shorts/FgU5DSPrBjg" },
       { id: "seated-row", name: "Seated Row", note: "Start 25 to 40 lbs", kind: "strength", sets: 3, reps: 12, weight: 30, unit: "lbs", video: "https://www.youtube.com/embed/EbfrqaMmreM?showinfo=0&rel=0" },
+      { id: "rope-pull", name: "Rope Pull", note: "Seated, rope, elbows out", kind: "strength", sets: 3, reps: 12, weight: 40, unit: "lbs", video: "https://www.instagram.com/reel/DIHRJiiorz9/" },
       { id: "db-curl", name: "Dumbbell Bicep Curls", note: "10 lbs in each hand", kind: "strength", sets: 3, reps: 12, weight: 10, unit: "lbs each hand", video: "https://www.youtube-nocookie.com/embed/lV6gkUaVaQc" },
       { id: "pushdown", name: "Cable Tricep Pushdowns", note: "Starting point, adjust freely", kind: "strength", sets: 3, reps: 12, weight: 20, unit: "lbs", video: "https://www.youtube.com/shorts/axDfrzuSB3Q" },
       { id: "hammer-curl", name: "Hammer Curls", note: "10 lbs in each hand", kind: "strength", sets: 3, reps: 12, weight: 10, unit: "lbs each hand", video: "https://www.youtube-nocookie.com/embed/oVXsgIfRFuw" },
